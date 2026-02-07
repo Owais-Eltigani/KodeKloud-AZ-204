@@ -7,19 +7,20 @@ class Program
     static async Task Main(string[] args)
     {
 
-        string endpoint = "https://<your-cosmosdb-account>.documents.azure.com:443/";
+        string endpoint = "https://az204cosmosdbinstance.documents.azure.com:443/";
         string key = "<your-cosmosdb-account-key>";
-        string databaseName = "<your-database-name>";
-        string collectionName = "<your-container-name>";
+        string databaseName = "airportsDB";
+        string collectionName = "airports";
 
         // Initialize Cosmos Client
         CosmosClient client = new CosmosClient(endpoint, key);
-    
+
         Container container = client.GetContainer(databaseName, collectionName);
 
         // Create a new record for "DXB" airport
-        var airportRecord = new 
+        var airportRecord = new
         {
+            id = "DBX",
             airport_code = "DXB",
             airport_name = "Dubai International Airport",
             country_code = "UAE"
@@ -32,7 +33,7 @@ class Program
 
             Console.WriteLine($"DXB has been successfully added.");
 
-    
+
         }
         catch (CosmosException ex)
         {
